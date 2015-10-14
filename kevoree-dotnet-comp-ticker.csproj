@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B5924537-0AB3-4717-8C41-9129A2D1DEBC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>kevoree_dotnet_comp_ticker</RootNamespace>
-    <AssemblyName>kevoree-dotnet-comp-ticker</AssemblyName>
+    <RootNamespace>Org.Kevoree.Library</RootNamespace>
+    <AssemblyName>Org.Kevoree.Library.Ticker</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\Desktop\package_solution\Ticker\5.2.10\plugin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,11 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Ticker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\kevoree-dotnet-annotation\Annotation.csproj">
+      <Project>{ad3c2f49-5c3b-46d3-a283-600fe11a0aa1}</Project>
+      <Name>Annotation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\kevoree-dotnet-core-api\Api.csproj">
+      <Project>{ad3c2f49-5c3b-46d3-a283-600fe11a0aa2}</Project>
+      <Name>Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\kevoree-dotnet-log\Log.csproj">
+      <Project>{7442ab80-01d8-4e1a-a1f1-3b6c4f18ae0d}</Project>
+      <Name>Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
