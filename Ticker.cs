@@ -11,7 +11,7 @@ namespace Org.Kevoree.Library
     {
         [Param(Optional = true, DefaultValue = "3000")] private long period;
 
-        [Output] private Port port;
+        [Output] private Port tick;
 
         [Param(Optional = true, DefaultValue = "false")] private bool random;
 
@@ -46,7 +46,7 @@ namespace Org.Kevoree.Library
                     value = DateTime.UtcNow.Ticks;
                 }
 
-                port.send(value.ToString(), null);
+                tick.send(value.ToString(), null);
             }
         }
     }
