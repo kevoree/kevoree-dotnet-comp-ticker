@@ -2,6 +2,7 @@
 using System.Threading;
 using Org.Kevoree.Annotation;
 using Org.Kevoree.Core.Api;
+using Org.Kevoree.Log.Api;
 
 namespace Org.Kevoree.Library
 {
@@ -9,11 +10,13 @@ namespace Org.Kevoree.Library
     [Serializable]
     internal class Ticker : MarshalByRefObject, DeployUnit
     {
-        [Param(Optional = true, DefaultValue = "3000")] private long period;
+        [Param(Optional = true, DefaultValue = "3000")] private long period = 3000;
 
         [Output] private Port tick;
 
-        [Param(Optional = true, DefaultValue = "false")] private bool random;
+        [Param(Optional = true, DefaultValue = "false")] private bool random = false;
+
+        [KevoreeInject] private ILogger logger;
 
         private readonly Random rnd = new Random();
 
@@ -22,6 +25,7 @@ namespace Org.Kevoree.Library
         [Start]
         public void Start()
         {
+            logger.Debug("Start");
             stopMe = false;
             new Thread(new Ticker().Run);
         }
@@ -29,6 +33,7 @@ namespace Org.Kevoree.Library
         [Stop]
         public void Stop()
         {
+            logger.Debug("Stop");
             stopMe = true;
         }
 
@@ -46,7 +51,10 @@ namespace Org.Kevoree.Library
                     value = DateTime.UtcNow.Ticks;
                 }
 
+                logger.Debug("Value : " + value);
+
                 tick.send(value.ToString(), null);
+                Thread.Sleep((int)this.period);
             }
         }
     }
