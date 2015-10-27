@@ -27,7 +27,7 @@ namespace Org.Kevoree.Library
         {
             logger.Debug("Start");
             stopMe = false;
-            new Thread(new Ticker().Run);
+            new Thread(this.Run).Start();
         }
 
         [Stop]
