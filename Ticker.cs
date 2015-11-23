@@ -3,20 +3,26 @@ using System.Threading;
 using Org.Kevoree.Annotation;
 using Org.Kevoree.Core.Api;
 using Org.Kevoree.Log.Api;
+using System.ComponentModel.Composition;
 
 namespace Org.Kevoree.Library
 {
     [ComponentType]
     [Serializable]
+    [Export(typeof(DeployUnit))]
     internal class Ticker : MarshalByRefObject, DeployUnit
     {
-        [Param(Optional = true, DefaultValue = "3000")] private long period = 3000;
+        [Param(Optional = true, DefaultValue = "3000")]
+        private long period = 3000;
 
-        [Output] private Port tick;
+        [Output]
+        private Port tick;
 
-        [Param(Optional = true, DefaultValue = "false")] private bool random = false;
+        [Param(Optional = true, DefaultValue = "false")]
+        private bool random = false;
 
-        [KevoreeInject] private ILogger logger;
+        [KevoreeInject]
+        private ILogger logger;
 
         private readonly Random rnd = new Random();
 
